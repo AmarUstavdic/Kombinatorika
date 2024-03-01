@@ -9,6 +9,8 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{styles/custome} % custome styles here
+\usepackage[slovene]{babel} % For correct hyphenation rules in Slovenian
+\usepackage{float} % Required for the H specifier
 
 
 
@@ -29,13 +31,15 @@
 
 % Prvo poglavje pri predmetu, uvod
 \input{sections/section1.tex}
+\clearpage
 
 % Drugo poglavje pri predmetu, osnovna kombinatoricna nacela
 \input{sections/section2.tex}
+\clearpage
 
 % Tretje poglavje pri predmetu, elementarna kombinatorika
 \input{sections/section3.tex}
-
+\clearpage
 
 
 \end{document}
