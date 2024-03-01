@@ -1,0 +1,189 @@
+\section{Uvod}
+\subsection{Uporabna matematika (nekaj zgodovine)}
+
+a) Zgodovinsko (od Newtona in Leibniza):
+\begin{itemize}
+    \item temelji na \underline{zvezno spreminjajočih se procesih}.
+    \item motivirani predvsem z fizikalnimi aplikacijami.
+    \item in študiranih z uporabo \underline{analize} (diferencialni račun, integralni račun).
+\end{itemize}
+b) Z rastjo računalnikov in drugih digitalnih naprav:
+\begin{itemize}
+    \item \underline{diskretna matematika} postaja vse pomembnejša.
+    \item diskretna matematika študira končne ali števno neskončne diskretne objekte
+    \item Zajema številna področja matematike: 
+    \begin{itemize}
+        \item teorijo množic, 
+        \item logiko, 
+        \item kombinatoriko, 
+        \item teorijo grafov, 
+        \item teoretično računalništvo, 
+        \item teorijo števil, 
+        \item pa tudi (vsaj delno): 
+        \begin{itemize}
+            \item algebro, 
+            \item operacijske raziskave, 
+            \item terijo iger, 
+            \item verjetnost, 
+            \item statistiko.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+Uporaba diskretne matematike v resničnem življenju (poleg računalnikov):
+\begin{itemize}
+    \item organizacija sestankov,
+    \item sestavljanje proizvodnih in šolskih urnikov,
+    \item kriptografija,
+    \item načrtovanje kod,
+    \item oblikovanje prometnih, električnih in komunikacijskih omrežij,
+    \item dodeljevanje zaposlenih na delovna mesta,
+    \item oblikovanje glasovnih shem,
+    \item načrtovanje poskusov (npr.: Recimo da imate kmetijo, pa želite preiskusit različna gnoila za zemljo, imate na voljo samo 3 njive, pa 7 različnih gnojil, kako jih boste zdej preiskusili katero je boljše. In potem lahko razvijete načrt kako boste to naredili na nek pošten način )
+\end{itemize}
+\begin{center}
+    % figure; fanova ravnina
+    \begin{tikzpicture}
+        % Coordinates of the vertices
+        \coordinate (1) at (0,0);
+        \coordinate (3) at (60:2); % Angle of 60 degrees and side length of 2 units
+        \coordinate (7) at (2,0);
+      
+        % Draw the triangle
+        \draw (1) -- (3) -- (7) -- cycle;
+
+        % Calculate the center of the triangle
+        \coordinate (center) at (barycentric cs:1=1,3=1,7=1);
+  
+        % Calculate the radius of the circle (half of the side length)
+        \pgfmathsetmacro{\radius}{2/3.5}
+  
+        % Draw the circle
+        \draw (center) circle [radius=\radius];
+      
+        % Label the vertices
+        \node[below left] at (1) {1};
+        \node[above] at (3) {3};
+        \node[below right] at (7) {7};
+
+        % Label the center and radius of the circle
+        %\node[right] at (center) {Center};
+        %\node[above] at ($(center) + (60:\radius)$) {Radius};
+
+        % Draw the line from vertex A
+        \draw (1) -- ($(3)!(1)!(7)$);
+        \draw (3) -- ($(1)!(3)!(7)$);
+        \draw (7) -- ($(1)!(7)!(3)$);
+
+        % Draw dots at the intersections and label them
+        \fill (intersection cs:first line={(1)--($(3)!(1)!(7)$)}, second line={(3)--($(1)!(3)!(7)$)}) circle (2pt) node[above right=0.5pt] {4};
+
+    \end{tikzpicture}
+\end{center}
+\begin{itemize}
+    \item v kemiji in \underline{biologiji} (lasti bioinformatiki, v študiju sekvence DNA in filogenetiki),
+    \item v razvedrilnih matematiki (Sudoku, Rubikova kocka, Hanoijski stolpi\dots)
+\end{itemize}
+Pri tem predmetu bomo obravnavali kombinatoriko pa teorijo grafov:
+\begin{itemize}
+    \item reševanje problemov
+    \item dokazovanje
+\end{itemize}
+
+\subsection{Kaj je kombinatorika?}
+Kombinatorika se ukvarja z rasporejanjem predmetov v skladu s predpisanimi pravili:
+\begin{itemize}
+    \item Prvič preučuje uprašanje ali je določena razporeditev sploh možna?
+    \item Če je odgovor pritrdilen, na koliko različnih načinov?
+\end{itemize}
+
+\noindent
+Če so pravila preprosta (npr.: izbira nogometne ekipe iz razreda učencov je obstoj razporeditve jasen in se osredotočimo na problem štetja.) \\
+
+\noindent
+Vendar za bolj zapletena pravila morda ne bo jasno, ali je razporeditev sploh mogoča. (npr.: Eulerjev problem časnikov.) \\
+
+\noindent
+Včasih je podana tudi kriterijska funkcija, ki meri, kako dobra je neka razporeditev. \\
+U tem primeru iščemo \underline{optimalne rešitve} glede na kriterijsko funkcijo (npr.: poiščite tak razpored tekm nogometnega turnirja, da bo turnir trajal čim manj dni.)
+
+\subsection{Zgled kombinatoričnih problemov}
+\subsubsection{Deranžmaji}
+\begin{center}
+    % figure of envelopes goes here draw it on ipad and import
+\end{center}
+Danih $n$ pisem in $n$ ovojni. \\
+Na koliko načinov lahko pisma vstavite v ovojnice, da nobeno pismo ni v pravilnid ovojnici? \\
+
+\noindent
+Diskusija: \\
+Najprej se vprašamo na koliko načinov lahko damo $n$ pisem v $n$ ovojnic če ni nobenih omejitev? (vse je dovoljeno)
+\begin{align*}
+    4 \cdot 3 &\cdot 2 \cdot 1 = 4! \\
+    n! = n &\cdot (n - 1) \dots 1
+\end{align*}
+Skupno število dajanja pisem v ovojnice je število vseh \underline{permutacij} $n$ objektov ki je $n!$.
+\begin{center}
+    % figure here
+\end{center}
+Videli bomo da je delež premutacij, ki so nepravilno naslovljene, zelo blizu $\frac{1}{e}$, kjer je $e \approx 2,71828\dots$ osnova naravnih logaritmov. \\
+
+\noindent
+Presenetljiv rezultat na prvi pogled. \\
+
+\noindent
+Iskaže se, da je število (deranžmajev) načinov napačnega naslavljanja pisem enako celemu številu, najbližjemu številu $\frac{n!}{e}$. \\
+
+\noindent
+\textbf{Domača naloga:} Za $n = 4$ in $n = 5$ izračunajte število (deranžmajev) načinov razporeditev $n$ pisem v ovojnice, tako da je vsako pismo napačno naslovljeno. Za vsak tak $n$ izračunajte razmerje tega števila s številom $n!$.
+
+\subsubsection{Kirkumnove šolarke (na e-učilnici)}
+
+\subsubsection{Eulerjevi častniki}
+To je pa ta zanimiv problem kjer se iskaže da ni preprosto ugotovit ali rešitev obstaja. \\
+Opazimo da je Eulerjev problem zelo podoben Latinskemu kvadratu, samo da ni $n = 3$, ampak je $n = 6$.
+\begin{center}
+    % tukaj narisi latinski kvadrat n = 3
+    % to celo stvar z latinskimi kvadrati lahko dam v en box
+\end{center}
+Danih je 36 časnikov, ki pripadaju 6 polkom in imajo 6 činov (pri čemer vsaka kombinacija čina in polka samo enemu častniku). Ali je častnike mogoče razvrstiti v tako $6 \times 6$ formacijo tako da bo vsaki vrstici in v vsakem stolpcu natanko en častnik iz vsakega polka in natanko en častnik iz vsakega polka in natanko en častnik vsakega čina?
+\begin{center}
+    % narisi figure
+\end{center}
+Problem je sestavil Euler leta 1782. \\
+Vrejel je da je odgovor ne, kar pa je šele leta 1900 dokazal Taury. \\
+Problem je mogoče posplošiti na $n^2$ častnikov, kjer je število polkov, činov, vrstic in stolpcev enako $n$.
+\begin{center}
+    
+\end{center}
+$$
+n: 1, \textcolor{red}{2}, 3, 4, 5, \textcolor{red}{6}, 7, 8, 9, 10, 11, 12, 13,\dots
+$$
+Euler je pokazal rešitve za vsa števila $n$ ki niso kongruentna 2 po modulu 4, in ugotovil da rešitev za $n \equiv 2 (\text{mod } 4)$ ne obstaja.
+\begin{align*}
+    a \equiv b (\text{mod } k) \text{ } \text{ } \text{ } (k \in \mathbb{N}, a,b \in \mathbb{Z}) \text{ če } k | a - b
+\end{align*}
+Euler se je glede tega motil. Trije matematiki, Bose, Shirikande in Parker so leta 1960 pokazali, da obstaja rešitev za vse $n$ razen za 2 in 6. \\
+
+\noindent
+\textbf{Domača naloga:} Rešite problem za 16 in 25 častnikov.
+
+\subsubsection{Ramseyjeva igra}
+\begin{center}
+    
+\end{center}
+Igra dveh igralcev ki zahteva list papirja in svinčnik dveh barv, npr.: rdečega pa zelenega. \\
+Izberemo 6 točk na papirju, tako da nobene 3 niso na skupni premici in igralca vzameta svinčnika in izmenjojoče z daljico povežeta dve izmed izbranih točk. In igralec ki prvi nariše trikotnik svoje barve izgubi (štejejo samo trikotniki z oglišči v izbranih točkah). \\
+
+\noindent
+Ali se lahko igra konča z neodločenim izidom (da nihče ne izgubi)? \\
+
+\noindent
+Diskusija: \\
+Iskaže se, da neodločen izid ni mogoč, saj eden igralc bo prisiljen vstvariti trikotnik.
+\begin{center}
+    % draw figure here
+\end{center}
+Remzi je dokazal široko posplošitev tega dejstva. Njegov izrek se včasih zapiše v obliki "Popoln nered je nemogoč." \\
+
+\noindent
+\textbf{Domača naloga:} Igrajte to igro s prijatelji in preverite da nedoločen izid ni mogoč.
