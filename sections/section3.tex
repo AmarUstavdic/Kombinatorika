@@ -1,0 +1,73 @@
+% Tretje poglavje pri predmetu, elementarna kombinatorika
+\section{Elementarna kombinatorika}
+
+\subsection{Izbori}
+
+\subsubsection{Zgled}
+Pri igri loto se v bobnu nahaja 39 kroglic, oštevilčenih s števili $1, \dots, 39$. Organizator igre iz bobna zaporedoma šestkrat izvleče po eno kroglico. Na koliko načinov lahko to stori? \\[1em]
+Odgovor je odvisen od razlage besede "način":
+\begin{itemize}
+    \item ali naj kroglico, ki smo jo v posameznem koraku izvlekli vržemo v boben ali ne, in 
+    \item ali je vrstni red izblečenih kroglic pomemben ali ne.
+\end{itemize}
+Dve osnovni lastnosti pri izbiri sta:
+\begin{enumerate}
+    \item \underline{ponavljanje}:
+    \begin{itemize}
+        \item izbori s ponavljanjem
+        \item izbori brez ponavljanja
+    \end{itemize}
+    \item \underline{izbori}:
+    \begin{itemize}
+        \item urejeni izbori (varijacija)
+        \item neurejeni izbori (kombinacija)
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Vrejeni izbori s ponavljanjem}
+(izvlečene kroglice, v boben \underline{vračamo}, in vrstni red je \underline{pomemben})
+\begin{align*}
+    \underset{\text{k - terica}}{\underbrace{(1, 2, 1, 3, 12, 5)}}
+\end{align*}
+
+\subsubsection{Definicija}
+Naj bo $N$ končna množica in $k \in \mathbb{N}$. Potem bomo urejeni k-terici $(a_1, \dots, a_k)$ elementi množice $N$ rečemo \underline{urejen izbor reda $k$ na množici $N$}. (lahko bi tukaj dodali da je \underline{s ponavljanjem}, ampak samo če želimo to poudariti, sicer bomo to izpustili) \\[1em]
+Množico vseh takih izborov označimo z $\overline{V}(N, k)$.
+
+\subsubsection{Zgled}
+Recimo da imamo množico $N = \{a, b, c\}$ in je $k = 4$, potem lahko en tak izbor predstavimo kot $(a, c, c, b)$, in tak izbor lahko predstavimo tudi z funkcijo katera slika iz množice $1, \dots, k$ v $N$, brez kakršnih koli omejitev.
+\begin{align*}
+    (a, b, c, d) &\equiv
+    \boxed{
+        \begin{aligned}[c]
+            &1 \to a \\
+            &2 \to c \\
+            &3 \to c \\
+            &4 \to b
+        \end{aligned}
+    }
+\end{align*}
+
+\begin{opomba}
+    Vzamemo k-terico $(a_1, \dots, a_k)$ elementa množice $N$ lahko razumemo tudi kot funkcijo ki slika iz množice $\{1, \dots, k\}$ v množico $N$.
+\end{opomba}
+
+\noindent
+Ker množica $\overline{V}(N, k)$ vsebuje vse svoje n-terice. \\
+
+\noindent
+Od tod iz načela produkta sledi:
+
+\subsubsection{Trditev}
+Naj bo $N$ poljubna množica z $n$ elementi in $k \in \mathbb{N}$. Tedaj je v množici $\overline{V}(N, k)$ natanko $n^k$ izborov.
+\begin{align*}
+    |\overline{V}(N, k)| = |N^k| = |N|^k = n^k
+\end{align*}
+
+\subsubsection{Zgled}
+Vsak vikend v februarju lahko obiščemo enega od 3 kinematografov. Koliko različnih zaporedij obiskov je možnih, pri čemer so ponovni obiski seveda dovoljeni? \\[1em]
+Torej, imamo $K = \{K_1, K_2, K_3\}$ (kinematografov) in 4 vikenda, torej eden primer takega zaporedja obiskov bi bil npr. $(K_2, K_1, K_1, K_3)$
+
+\begin{align*}
+    |\overline{V}(K, 4)| = |K|^4 = 3^4 = 81
+\end{align*}
